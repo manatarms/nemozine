@@ -2,59 +2,53 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import { createComponent } from "react-fela";
+import { createRenderer } from "fela";
+import { Provider } from "react-fela";
 import { render } from "fela-dom";
-// TODO maybe move to hashRoute
+
+import Footer from "./assets/pages/Footer";
+import Header from "./assets/pages/Header";
+
+import img from "./assets/images/about_pic.jpg";
+
 import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
 
-const container = ({ padding }) => ({
-	padding: padding + "px",
-	backgroundColor: "rgb(124, 114, 231)",
-	fontSize: "20px"
-});
+const renderer = createRenderer();
 
-const Container = createComponent(container);
+const Page = createComponent(({}) => ({
+	width: "100%"
+}));
 
-class TopNav extends React.Component {
-	render() {
-		return <div>Hello World</div>;
-	}
-}
+const Wrapper = createComponent(({ width }) => ({
+	width: width ? width : "auto",
+	margin: "0 auto"
+}));
 
 class App extends React.Component {
 	render() {
 		return (
 			<div>
-				<Header />
-				<Main />
-				<Footer />
+				<Page>
+					<Header />
+					<Main />
+					<Footer />
+				</Page>
 			</div>
 		);
 	}
 }
 
-const Header = () => (
-	<header>
-		<nav>
-			<ul>
-				<li><Link to="/">Home</Link></li>
-				<li><Link to="/paintings">Roster</Link></li>
-				<li><Link to="/about">Schedule</Link></li>
-			</ul>
-		</nav>
-	</header>
-);
-
 const Main = () => (
-	<main>
-		<Switch>
-			<Route exact path="/" component={Home} />
-			<Route path="/paintings" component={Paintings} />
-			<Route exact path="/about" component={About} />
-		</Switch>
-	</main>
+	<Wrapper width="1024px">
+		<main>
+			<Switch>
+				<Route exact path="/" component={Home} />
+				<Route path="/paintings" component={Paintings} />
+				<Route exact path="/about" component={About} />
+			</Switch>
+		</main>
+	</Wrapper>
 );
-
-const Footer = () => <div>Footer</div>;
 
 const Painting = props => (
 	<div>
@@ -68,11 +62,7 @@ const Painting = props => (
 
 const About = () => (
 	<div>
-		<ul>
-			<li>6/5 @ Evergreens</li>
-			<li>6/8 vs Kickers</li>
-			<li>6/14 @ United</li>
-		</ul>
+		<img src={img} />
 	</div>
 );
 
@@ -90,9 +80,10 @@ const Paintings = () => (
 );
 
 ReactDOM.render(
-	<BrowserRouter>
-		<App />
-	</BrowserRouter>,
+	<Provider renderer={renderer}>
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
+	</Provider>,
 	document.getElementById("root")
 );
-// ReactDOM.render(<TopNav />, document.getElementById("root"));
