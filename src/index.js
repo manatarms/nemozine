@@ -6,12 +6,13 @@ import { createRenderer } from "fela";
 import { Provider } from "react-fela";
 import { render } from "fela-dom";
 
-import Footer from "./assets/pages/Footer";
-import Header from "./assets/pages/Header";
-
-import img from "./assets/images/about_pic.jpg";
+import Footer from "./assets/components/Footer";
+import Header from "./assets/components/Header";
+import Gallery from "./assets/components/Gallery";
 
 import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
+
+import aboutImg from "./assets/images/about_pic.jpg";
 
 const renderer = createRenderer();
 
@@ -43,26 +44,16 @@ const Main = () => (
 		<main>
 			<Switch>
 				<Route exact path="/" component={Home} />
-				<Route path="/paintings" component={Paintings} />
+				<Route path="/paintings" component={Gallery} />
 				<Route exact path="/about" component={About} />
 			</Switch>
 		</main>
 	</Wrapper>
 );
 
-const Painting = props => (
-	<div>
-		<ul>
-			{props.match.number}
-			All Paintings
-
-		</ul>
-	</div>
-);
-
 const About = () => (
 	<div>
-		<img src={img} />
+		<img src={aboutImg} />
 	</div>
 );
 
@@ -70,13 +61,6 @@ const Home = () => (
 	<div>
 		<h1>Welcome to the Nemozine Website!</h1>
 	</div>
-);
-
-const Paintings = () => (
-	<Switch>
-		<Route exact path="/paintings" component={Painting} />
-		<Route path="/paintings/:number" component={Painting} />
-	</Switch>
 );
 
 ReactDOM.render(
