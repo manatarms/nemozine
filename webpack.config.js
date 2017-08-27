@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
 	context: path.resolve(__dirname, "./src"),
@@ -28,7 +29,7 @@ module.exports = {
 				use: [
 					{
 						loader: "file-loader",
-						options: {}
+						options: { name: "[hash].[ext]", publicPath: "/assets" }
 					}
 				]
 			}
@@ -45,6 +46,8 @@ module.exports = {
 			name: "commons",
 			filename: "commons.js",
 			minChunks: 2
-		})
+		}),
+		new webpack.optimize.AggressiveMergingPlugin()
+		//new HtmlWebpackPlugin()
 	]
 };
