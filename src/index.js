@@ -1,17 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
-import { createRenderer } from 'fela';
-import { Provider } from 'react-fela';
+import { createRenderer } from "fela";
+import { Provider } from "react-fela";
 
-import Footer from './assets/components/Footer';
-import Header from './assets/components/Header';
-import Main from './assets/components/Main';
-import Page from './assets/components/Page';
+import Footer from "./assets/components/Footer";
+import Header from "./assets/components/Header";
+import Main from "./assets/components/Main";
+import Page from "./assets/components/Page";
 
-import { BrowserRouter } from 'react-router-dom';
+import baseCss from "./assets/css/base.css";
+import { BrowserRouter } from "react-router-dom";
 
 const renderer = createRenderer();
+renderer.renderStatic(baseCss);
 
 class App extends React.Component {
   render() {
@@ -31,5 +33,5 @@ ReactDOM.render(
       <App />
     </BrowserRouter>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );

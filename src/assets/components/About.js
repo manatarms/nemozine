@@ -2,6 +2,7 @@ import React from "react";
 import { createComponent } from "react-fela";
 
 import Wrapper from "./Wrapper";
+import Painting from "./Painting";
 
 import aboutImg from "../images/about_pic.jpg";
 
@@ -14,7 +15,11 @@ const TextWrapper = createComponent(() => ({
 const Text = createComponent(
   () => ({
     marginBottom: "30px",
-    whiteSpace: "pre"
+    lineHeight: 1.5,
+    fontSize: "15px",
+    "@media (min-width: 768px)": {
+      fontSize: "20px"
+    }
   }),
   "p"
 );
@@ -22,33 +27,34 @@ const Text = createComponent(
 const About = () => (
   <div>
     <Wrapper width="435px" float="left">
-
-      <img src={aboutImg} />
-
+      <Painting src={aboutImg} />
     </Wrapper>
-    <Wrapper width="340px" float="right">
+    <Wrapper width="455px" float="right">
       <TextWrapper>
         <Text>
-          {`All along a dilettante I have been\ntime it is now to row the boat it seems\nSitting by the river banks times galore\neventually will I just grow old, a bore?`}
+          {"All along a dilettante I have been"}<br />
+          {"time it is now to row the boat it seems"}<br />
+          {"Sitting by the river banks times galore"}<br />
+          {"eventually will I just grow old, a bore?"}<br />
         </Text>
         <Text>
-          With nothing to show as a creation of mine
-          my expressions will all perish with me, inside
-          A veggie is this life where in I don't leave a mark
-          Even Brinjal is ahead
-          with a purpose to nourish & color so dark
+          {"With nothing to show as a creation of mine"}<br />
+          {"my expressions will all perish with me, inside"}<br />
+          {"A veggie is this life where in I don't leave a mark"}<br />
+          {"Even Brinjal is ahead"}<br />
+          {"with a purpose to nourish & color so dark"}<br />
         </Text>
         <Text>
-          Have watched the ocean with amazement so long
-          feared the swim that I long to go on
-          Paving the way for myself to glory
-          achieved by expression of self through story
+          {"Have watched the ocean with amazement so long"}<br />
+          {"feared the swim that I long to go on"}<br />
+          {"Paving the way for myself to glory"}<br />
+          {"achieved by expression of self through story"}<br />
         </Text>
         <Text>
-          I will dive and swim, till my bones ache with fatigue
-          brave the darkness, and waters too deep
-          My fears and doubts will sink below
-          as dawn brings the sun to the shore
+          {"I will dive and swim, till my bones ache with fatigue"}<br />
+          {"brave the darkness, and waters too deep"}<br />
+          {"My fears and doubts will sink below"}<br />
+          {"as dawn brings the sun to the shore"}<br />
         </Text>
       </TextWrapper>
     </Wrapper>
